@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="Final.UserControlHome"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Final"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800" Background="Beige">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+
+        <!--Top Panel-->
+        <StackPanel Grid.Row="0" VerticalAlignment="Center">
+            
+        </StackPanel>
+
+
+
+        <!-- Middle Panel-->
+
+        <!-- First Card -->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <materialDesign:Card MouseLeftButtonDown="FirstCardBtnClick" Width="200" VerticalAlignment="Center" Margin="0 0 500 0"
+               Background="{DynamicResource PrimaryHueMidBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="140" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image Source="../Resources/Images/NewAppointment.jpg" Stretch="UniformToFill"
+                        Height="140" Width="200" Cursor="Hand" x:Name="Book"/>
+                    <Button Grid.Row="0"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0 0 16 -20">
+                        <materialDesign:PackIcon Kind="Backburger" />
+                    </Button>
+                    <StackPanel Grid.Row="1" Margin="8 24 8 0">
+                        <TextBlock FontWeight="Bold" FontSize="10pt" Foreground="Azure" Text="Make an appointment"/>
+                        <TextBlock TextWrapping="Wrap" Foreground="Azure" VerticalAlignment="Center" 
+                                   Text="Create a new appointment, update and see history"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
+                        <Button Foreground="Azure" Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                            <materialDesign:PackIcon Kind="Calendar" />
+                        </Button>
+                        <Button Foreground="Azure" Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                            <materialDesign:PackIcon Kind="Heart" />
+                        </Button>
+                        <materialDesign:PopupBox Foreground="Azure" Padding="2 0 2 0">
+                            <StackPanel>
+                                <Button Content="Edit Appointment" />
+                                <Button Content="History" />
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+
+        <!-- Second Card -->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <materialDesign:Card MouseLeftButtonDown="SecondCardBtnClick" Width="200" VerticalAlignment="Center" Margin="0 0 0 0"
+                Background="{DynamicResource PrimaryHueMidBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="140" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image Source="../Resources/Images/NewAppointment.jpg" Stretch="UniformToFill"
+                        Height="140" Width="200" Cursor="Hand"/>
+                    <Button Grid.Row="0"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0 0 16 -20">
+                        <materialDesign:PackIcon Kind="Backburger" />
+                    </Button>
+                    <StackPanel Grid.Row="1" Margin="8 24 8 0">
+                        <TextBlock FontWeight="Bold" FontSize="10pt" Foreground="Azure" Text="Add a new Pet"/>
+                        <TextBlock TextWrapping="Wrap" Foreground="Azure" VerticalAlignment="Center" Text="Add a new pet, update and see all pets"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
+                        <Button Foreground="Azure" Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                            <materialDesign:PackIcon Kind="Pets" />
+                        </Button>
+                        <Button Foreground="Azure" Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                            <materialDesign:PackIcon Kind="Heart" />
+                        </Button>
+                        <materialDesign:PopupBox  Foreground="Azure" Padding="2 0 2 0">
+                            <StackPanel>
+                                <Button Content="Edit Pet" />
+                                <Button Content="History" />
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+
+        <!-- Third Card -->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <materialDesign:Card MouseLeftButtonDown="ThirdCardBtnClick"  Width="200" VerticalAlignment="Center" Margin="500 0 0 0"
+                Background="{DynamicResource PrimaryHueMidBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="140" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image Source="../Resources/Images/NewAppointment.jpg" Stretch="UniformToFill"
+                        Height="140" Width="200" Cursor="Hand"/>
+                    <Button Grid.Row="0"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0 0 16 -20">
+                        <materialDesign:PackIcon Kind="Backburger" />
+                    </Button>
+                    <StackPanel Grid.Row="1" Margin="8 24 8 0">
+                        <TextBlock FontWeight="Bold" FontSize="10pt" Foreground="Azure" Text="Add a new Customer"/>
+                        <TextBlock TextWrapping="Wrap" Foreground="Azure" VerticalAlignment="Center" Text="Add a new customer, update or remove"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
+                        <Button Foreground="Azure" Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
+                        materialDesign:RippleAssist.IsCentered="True">
+                            <materialDesign:PackIcon Kind="Users" />
+                        </Button>
+                        <Button Foreground="Azure" Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                            <materialDesign:PackIcon Kind="Heart" />
+                        </Button>
+                        <materialDesign:PopupBox Foreground="Azure" Padding="2 0 2 0">
+                            <StackPanel>
+                                <Button Content="Edit Customer" />
+                                <Button Content="History" />
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+
+
+        <!-- Bottom Panel -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Click="SwitchUserBtnClick" Width="115" Content="Switch User" />
+        </StackPanel>
+    </Grid>
+</UserControl>

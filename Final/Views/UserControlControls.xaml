@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="Final.UserControlControls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Entities="clr-namespace:MyClasses.Entities;assembly=MyClasses"
+             xmlns:local="clr-namespace:Final"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="Beige"
+             Loaded="ServicesBtnClick"
+             >
+    
+    <UserControl.Resources>
+       
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+
+        <!-- Middle Panel-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!--Middle Left Panel-->
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <!--Middle Panes, Side Panel Buttons -->
+                <StackPanel x:Name="ControlSidePanelBtn" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0" >
+                    <Button Click="ServicesBtnClick" x:Name="ControlsServicesBtn" Width="85" Content="Services" Margin="0 2 0 2"/>
+                    <Button Click="SpeciesBtnClick" x:Name="ControlsSpeciesBtn" Width="85" Content="Species" Margin="0 2 0 2"/>
+                    <Button Click="BreedBtnClick" x:Name="ControlsBreedBtn" Width="85" Content="Breed" Margin="0 2 0 2"/>
+                    <Button Click="UsersBtnClick" x:Name="ControlsUsersBtn" Width="85" Content="Users" Margin="0 2 0 2"/>
+                    <CheckBox x:Name="ServiceIsListedChkBox" Content="Showing Listed"  IsChecked="True" Click="ServiceIsListedChkBox_Click" HorizontalAlignment="Center" Margin="5"/>
+                </StackPanel>
+                
+                <!--Middle Panes, Detail View -->
+                <!--Services Detail View-->
+                <StackPanel Grid.Column="1" x:Name="ControlDetailServices" DataContext="{Binding}"
+                           VerticalAlignment="Top" Visibility="Collapsed" Margin="5" IsEnabled="False">
+                            
+                    <Label Content="Services Details Pane" FontSize="14" FontWeight="Bold"/>
+                    <TextBlock Text="Please select an item in the list to display its details" FontStyle="Italic" Foreground="Gray" TextWrapping="Wrap" Margin="5 0 0 0"/>
+                    <Label Content="Service Type" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <TextBox Text="{Binding ServiceType}" Margin="5 0 0 5" />
+                    <Label Content="Species" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <ComboBox x:Name="ServicesSpeciesCmbBox" Margin="5 0 0 5" Visibility="Visible"
+                              ItemsSource="{Binding}"
+                              DisplayMemberPath="SpeciesName" />
+                    <Label Content="Homecare possibility" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <CheckBox x:Name="ServicesHomeCareChkBox" IsChecked="{Binding Path=HomeCare}"
+                              Click="ServicesHomeCareChkBox_Click" Margin="5 0 0 5"/>
+                    <Label Content="Service Description" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <TextBox Text="{Binding Description}" TextWrapping="Wrap" FontStyle="Italic" Foreground="Gray"
+                              BorderThickness="0" IsEnabledChanged="TextBox_IsEnabledChanged" Margin="5 0 0 5"/>
+                    <CheckBox x:Name="ServicesRelistChkBox" IsChecked="{Binding IsListed}" Content="Re-list" Margin="5 0 0 5" Visibility="Hidden"/>
+                </StackPanel>
+                
+                <!--Breed Detail View-->
+                <StackPanel Grid.Column="1" x:Name="ControlDetailBreed" Visibility="Collapsed" IsEnabled="False" VerticalAlignment="Top" Margin="5">
+                    <Label Content="Breed Details Pane" FontSize="14" FontWeight="Bold"/>
+                    <Label Content="Breed Name" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <TextBox Text="{Binding BreedName}" Margin="5 0 0 5" />
+                    <Label Content="Species" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <ComboBox x:Name="ServicesBreedCmbBox" ItemsSource="{Binding}" DisplayMemberPath="SpeciesName"  Margin="5 0 0 5" Visibility="Visible"/>
+                    <CheckBox x:Name="ServicesBreedRelistChkBox" IsChecked="{Binding IsListed}" Content="Re-list" Margin="5 0 0 5" Visibility="Hidden"/>
+
+                </StackPanel>
+
+                <!--Species Detail View-->
+                <StackPanel Grid.Column="1" x:Name="ControlDetailSpecies" DataContext="{Binding}" 
+                            VerticalAlignment="Top" Visibility="Collapsed" IsEnabled="False" Margin="5">
+                    <Label Content="Species Details Pane" FontSize="14" FontWeight="Bold"/>
+                    <Label Content="Species Name" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <TextBox Text="{Binding SpeciesName}" Margin="5 0 0 5" />
+                    <Label Content="Comments" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <TextBox TextWrapping="Wrap" Margin="5 0 0 5">Sub species have not been declared at this time </TextBox>
+                    <CheckBox x:Name="ServicesSpeciesRelistChkBox" IsChecked="{Binding IsListed}" Content="Re-list" Margin="5 0 0 5" Visibility="Hidden"/>
+
+                </StackPanel>
+
+                <!--User Detail View -->
+                <StackPanel Grid.Column="1" x:Name="ControlDetailUsers" DataContext="{Binding}" 
+                            VerticalAlignment="Top" Visibility="Collapsed" IsEnabled="False" Margin="5">
+                    <Label Content="User Details Pane" FontSize="14" FontWeight="Bold"/>
+                    <Label Content="User Name" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <TextBox Text="{Binding UserName}" Margin="5 0 0 5" />
+                    <Label Content="Password" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <PasswordBox x:Name="PasswordTxtBox" MaxLength="8" Margin="5 0 0 5" />
+                    <CheckBox x:Name="IsAdminChkBox" Content="Has Administrator rights" 
+                              IsChecked="{Binding IsAdmin}" Margin="5 10 0 5"/>
+                    <Label Content="Comments" FontWeight="Bold" Margin="0 5 0 0"/>
+                    <TextBox TextWrapping="Wrap">
+                        More personal info is not available at this time
+                    </TextBox>
+                    <Button x:Name="PasswordResetBtn" Content="Reset Password" Click="ResetUserPassWordBtn" Foreground="DarkRed" Margin="10 20 10 0" Width="auto" IsEnabled="True"/>
+                    <CheckBox x:Name="ServicesUsersRelistChkBox" IsChecked="{Binding IsListed}" Content="Re-list" Margin="5 0 0 5" Visibility="Hidden"/>
+
+                </StackPanel>
+            </Grid>
+
+
+            <!--Middle Right Panel-->
+            <Grid x:Name="ControlsMiddleRightMainGrid" Grid.Column="1">
+                <!-- DataGrid for each function, all are initially collapsed -->
+                
+                <!--Services DataGrid-->
+                <DataGrid x:Name="ControlsDataGrid_Services" ItemsSource="{Binding}" Visibility="Collapsed"   
+                          SelectionChanged="ControlsDataGrid_Services_SelectionChanged" ColumnHeaderStyle="{DynamicResource HeaderStyle}"
+                           Style="{DynamicResource DataGridStyle}">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Service Type" Binding="{Binding ServiceType}" Width="Auto" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Species" Binding="{Binding Species.SpeciesName}" Width="Auto" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                    
+                </DataGrid>
+                
+                <!--Species DataGrid-->
+                <DataGrid x:Name="ControlsDataGrid_Species" ItemsSource="{Binding}" SelectionChanged="ControlsDataGrid_Species_SelectionChanged" Visibility="Collapsed" Margin="5" AutoGenerateColumns="False" 
+                          ColumnHeaderStyle="{DynamicResource HeaderStyle}" Style="{DynamicResource DataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Species" Binding="{Binding SpeciesName}" Width="Auto" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+                <!--Breed DataGrid-->
+                <DataGrid x:Name="ControlsDataGrid_Breed" ItemsSource="{Binding}" SelectionChanged="ControlsDataGrid_Breed_SelectionChanged" Visibility="Collapsed" Margin="5" AutoGenerateColumns="False" 
+                          ColumnHeaderStyle="{DynamicResource HeaderStyle}" Style="{DynamicResource DataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Breed" Binding="{Binding BreedName}" Width="Auto" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Species" Binding="{Binding Species.SpeciesName}" Width="Auto" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+                <!--Users DataGrid-->
+                <DataGrid x:Name="ControlsDataGrid_Users" ItemsSource="{Binding}" SelectionChanged="ControlsDataGrid_Users_SelectionChanged" Visibility="Collapsed" Margin="5" AutoGenerateColumns="False" 
+                          ColumnHeaderStyle="{DynamicResource HeaderStyle}" Style="{DynamicResource DataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="User Name" Binding="{Binding UserName}" Width="Auto" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Is Admin" Binding="{Binding IsAdmin}" Width="Auto" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+
+        </Grid>
+
+        <!--Bottom Panel-->
+        <StackPanel x:Name="BottomPanelButtons" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
+            <Button Click="AddBtnClick"    x:Name="ControlsAddBtn"    Width="90" Content="Add"/>
+            <Button Click="RemoveBtnClick" x:Name="ControlsRemoveBtn" Width="90" Content="Remove" Margin="5 0 0 0"/>
+            <Button Click="UpdateBtnClick" x:Name="ControlsUpdateBtn" Width="90" Content="Update" Margin="5 0 5 0"/>
+            <Button Click="DeleteBtnClick" x:Name="ControlsDeleteBtn" Width="90" Content="Delete" />
+            <Button Click="ReListBtnClick" x:Name="ControlsReListBtn" Width="90" Content="Re-List" Margin="5 0 0 0" Visibility="Collapsed" />
+        </StackPanel>
+        <StackPanel x:Name="SaveAbortButtons" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Orientation="Horizontal" Visibility="Collapsed">
+            <Button Content="Save Changes" Click="Controls_SaveBtn" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Margin="5"/>
+            <Button Content="Abort Changes"       Click="Controls_AbortSaveBtn" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
